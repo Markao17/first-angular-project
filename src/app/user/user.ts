@@ -1,4 +1,5 @@
 import { Component, input, computed, output } from '@angular/core';
+import { User } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -8,15 +9,14 @@ import { Component, input, computed, output } from '@angular/core';
 })
 
 // input with lowercase receives a signal
-export class User {
-  id = input.required<string>();
-  avatar = input.required<string>();
-  name = input.required<string>();
+export class UserComponent {
+  user = input.required<User>();
   select = output<string>();
+  isSelected = input<boolean>();
 
-  avatarUrl = computed(() => 'users/' + this.avatar());
+  avatarUrl = computed(() => 'users/' + this.user().avatar);
 
   onSelectedUser() {
-    this.select.emit(this.id());
+    this.select.emit(this.user().id);
   }
 }
