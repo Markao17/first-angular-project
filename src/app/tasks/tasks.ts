@@ -1,11 +1,11 @@
 import { Component,signal, input, computed, output } from '@angular/core';
 import { TaskComponent } from './task/task';
-import { Task } from './task/task.model';
-import { NewTask } from './new-task/new-task';
+import { Task, NewTask } from './task/task.model';
+import { NewTaskComponent } from './new-task/new-task';
 
 @Component({
   selector: 'app-tasks',
-  imports: [TaskComponent, NewTask],
+  imports: [TaskComponent, NewTaskComponent],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss',
 })
@@ -63,6 +63,11 @@ export class Tasks {
   }
 
   onClose() {
+    this.isAddingTask.set(false);
+  }
+
+  onNewTask(task: NewTask) {
+    this.tasks.set([...this.tasks(), { id: (this.tasks().length + 1).toString(), userId: this.id(), name: task.title, summary: task.summary, dueDate: task.dueDate }]);
     this.isAddingTask.set(false);
   }
 }
