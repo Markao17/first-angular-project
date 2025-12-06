@@ -1,9 +1,10 @@
 import { Component, input, computed, output } from '@angular/core';
 import { User } from './user.model';
+import { CardComponent } from '../shared/card/card';
 
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.html',
   styleUrl: './user.scss',
 })

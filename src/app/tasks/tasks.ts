@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task';
 import { Task, NewTask } from './task/task.model';
 import { NewTaskComponent } from './new-task/new-task';
 
+
 @Component({
   selector: 'app-tasks',
   imports: [TaskComponent, NewTaskComponent],
