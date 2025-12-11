@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { Task } from './task.model';
 import { CardComponent } from '../../shared/card/card';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-task',
@@ -10,9 +11,13 @@ import { CardComponent } from '../../shared/card/card';
 })
 export class TaskComponent {
   task = input.required<Task>();
-  completeTask = output<string>();
+  private tasksService = inject(TasksService);
 
   onCompletedTask() {
-    this.completeTask.emit(this.task().id);
+    this.tasksService.removeTask(this.task().id);
+  }
+
+  formatDate(dateString: string): string {
+    return dateString.replace(/-/g, '/');
   }
 }
